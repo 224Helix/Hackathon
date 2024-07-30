@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Login</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('../assets/images/sand_wall.jpg');
+            background-size: cover;
+            color: #640096;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem;
+            background-image: url('../assets/images/urn.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        input {
+            width: 100%;
+            max-width: 350px;
+            height: 3rem;
+            margin: 0.75rem 0;
+            padding: 0 1rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: #000;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            max-width: 350px;
+            height: 3rem;
+            margin: 0.75rem 0;
+            border-radius: 4px;
+            background-color: #640096;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #4a0080;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Hackathon Login</h1>
+        <p>Welcome to the Katy Hackathon!</p>
+        <p>Organized by Mosopefoluwa Adejumo</p>
+        <p>To get started, enter the ID and password assigned to you upon your sign-up.</p>
+        <form id="loginForm">
+            <input type="text" id="id" name="id" pattern="\d{8}" title="Please enter exactly 8 digits." required placeholder="Enter your ID">
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</body>
+</html>
