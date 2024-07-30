@@ -28,10 +28,12 @@ h1{
     text-align: center;
 }
 p{
-    color: black;
+    color: white;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 form{
-    width: 400px;
+    width: 45vw;
     height: 400px;
     background-image: url(../assets/images/urn.png);
     background-size: contain;
@@ -41,4 +43,26 @@ form{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+input{
+    background-color: black;
+    width: 40vw;
+    height: 5vh;
+    margin: 2vh;
+    color: white;
+    border-radius: 2.5vh;
+    padding: 0 1vw ;
+}
+button{
+    background-color: rgb(100, 0, 150);
+    color: white;
+    width: 40vw;
+    height: 5vh;
+    margin: 2vh;
+    border-radius: 2.5vh;
+    font-size: 1.5vh;
+    font-weight: bold;
+    cursor: pointer;
 }

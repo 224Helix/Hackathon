@@ -1,0 +1,3 @@
+Flask
+langchain_ollama
+langchain_core

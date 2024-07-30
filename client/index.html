@@ -13,10 +13,8 @@
         <p>Organized by Mosopefoluwa Adejumo</p>
         <p>To get started, enter the ID and password assigned to you upon your sign-up.</p>
         <form id="loginForm">
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="text" id="id" name="id" pattern="\d{8}" title="Please enter exactly 8 digits."required placeholder="Enter your ID">
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
             <button type="submit">Login</button>
         </form>
     </main>
