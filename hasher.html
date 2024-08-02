@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Hasher</title>
+    <!-- Include bcryptjs library from a CDN -->
+</head>
+<body>
+    <h1>Password Hasher</h1>
+    <form id="hashForm">
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Hash Password">
+    </form>
+    <p id="hashedPassword"></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+    <script>
+            console.log('bcryptjs version:', bcrypt.version);
+
+        // Ensure the DOM is fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listener for form submission
+            document.getElementById('hashForm').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Get the password input value
+                var password = document.getElementById('password').value;
+
+                // Check if bcrypt is loaded
+                if (typeof bcrypt === 'undefined') {
+                    console.error('bcrypt library is not loaded.');
+                    return;
+                }
+
+                // Hash the password using bcrypt
+                bcrypt.hash(password, 10, function(err, hash) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    // Display the hashed password
+                    document.getElementById('hashedPassword').innerText = `Hashed Password: ${hash}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

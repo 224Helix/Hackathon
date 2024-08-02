@@ -3,6 +3,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+@font-face {
+    font-family: "ancient";
+    src: url(../assets/fonts/Spartacus-KVdLp.ttf);
+}
 body {
     width: 100vw;
     height: 100%;
@@ -19,7 +23,11 @@ main {
     align-items: center;
     flex-direction: column;
     background-image: url(../assets/images/sand_wall.jpg);
-    color: rgb(100, 0, 150) ;
+    font-family: ancient;
+    color: #007bff ;
+    text-shadow: 
+    3px 3px 10px gold,
+    1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 h1{
@@ -31,6 +39,7 @@ p{
     color: white;
     font-size: 20px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    font-family: Poppins;
 }
 form{
     width: 45vw;
@@ -56,13 +65,14 @@ input{
     padding: 0 1vw ;
 }
 button{
-    background-color: rgb(100, 0, 150);
-    color: white;
+    font-family: ancient;
+    background-color: #007bff;
+    color: gold;
     width: 40vw;
     height: 5vh;
     margin: 2vh;
     border-radius: 2.5vh;
-    font-size: 1.5vh;
+    font-size: 3vh;
     font-weight: bold;
     cursor: pointer;
 }

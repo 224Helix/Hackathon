@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon</title>
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
 </head>
 <body>
     <main>
@@ -15,8 +16,56 @@
         <form id="loginForm">
             <input type="text" id="id" name="id" pattern="\d{8}" title="Please enter exactly 8 digits."required placeholder="Enter your ID">
             <input type="password" id="password" name="password" required placeholder="Enter your password">
-            <button type="submit">Login</button>
+            <button type="submit">LOGIN</button>
         </form>
     </main>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCqdQsJX_YvUSPwgcOGQPC6Vmwh7iCJ8tc",
+          authDomain: "hackathon-4295c.firebaseapp.com",
+          projectId: "hackathon-4295c",
+          storageBucket: "hackathon-4295c.appspot.com",
+          messagingSenderId: "735983664338",
+          appId: "1:735983664338:web:0ce37fd87cf8afe6be810b",
+          measurementId: "G-KF0D2BKBHJ"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('loginForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var userId = document.getElementById('id').value;
+                var password = document.getElementById('password').value;
+
+                if (typeof bcrypt === 'undefined') {
+                    console.error('bcrypt library is not loaded.');
+                    return;
+                }
+
+                // Hash the password with bcrypt
+                bcrypt.hash(password, 10, function(err, hash) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+
+                    // Check the hashed password against Firebase
+                    verifyPassword(userId, hash);
+                });
+            });
+        });
+      </script>
 </body>
 </html>
