@@ -17,7 +17,8 @@ Answer:
 model = OllamaLLM(model='phi3')
 prompt = ChatPromptTemplate.from_template(template)
 
-context = """
+# Initial hackathon context
+initial_context = """
 Hackathon Context:
 Zeus has ordered the participants to find and stop the person causing mayhem on Olympus. The order is given in a code, which is a Caesarian cipher. 
 Hera claims she is not the culprit and has noticed more deaths of married men, especially fishermen, in certain regions, hinting that Poseidon may be responsible.
@@ -27,17 +28,31 @@ Bot's Role:
 The bot's role is to answer questions from the participants about the hackathon without revealing the answers. The bot should provide helpful guidance and hints while ensuring the participants solve the challenges themselves.
 """
 
+# Store contexts per user (in-memory, consider a more robust solution for production)
+user_contexts = {}
+
 @app.route('/chat', methods=['POST'])
 def chat():
-    global context
     data = request.json
-    question = data['question']
+    user_id = data.get('user_id')
+    question = data.get('question')
     
-    generated_prompt = prompt.format(context=context, question=question)
-    result = model.invoke(generated_prompt)
-    answer = result['text'] if isinstance(result, dict) and 'text' in result else result
+    if not user_id or not question:
+        return jsonify({'error': 'user_id and question are required'}), 400
     
-    context += f"\nUser: {question}\nBot: {answer}"
+    if user_id not in user_contexts:
+        user_contexts[user_id] = initial_context
+    
+    context = user_contexts[user_id]
+    
+    try:
+        generated_prompt = prompt.format(context=context, question=question)
+        result = model.invoke(generated_prompt)
+        answer = result['text'] if isinstance(result, dict) and 'text' in result else result
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+    user_contexts[user_id] += f"\nUser: {question}\nBot: {answer}"
     
     return jsonify({'answer': answer})
 
